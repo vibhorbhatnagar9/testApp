@@ -1,0 +1,13 @@
+<mvc:View controllerName="sap.ui.table.sample.TableFreeze.Controller2" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:viz="sap.viz.ui5.controls"
+ xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz.data="sap.viz.ui5.data">
+ <App>
+  <Page title="Chart Demo">
+   <content>
+    <viz:VizFrame id="oVizFrame" busy="false" busyIndicatorDelay="1000" visible="true" uiConfig="{ 'applicationSet': 'fiori' }"
+          vizType="dual_bar" legendVisible="true"
+          vizProperties=" 'plotArea': { 'secondaryScale': { 'fixedRange': true, 'minValue': 0, 'maxValue': 30000 } }">
+    </viz:VizFrame>
+   </content>
+  </Page>
+ </App>
+</mvc:View>

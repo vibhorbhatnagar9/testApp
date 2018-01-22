@@ -1,0 +1,201 @@
+<mvc:View xmlns="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core" xmlns:m="sap.m" 
+	controllerName="sap.ui.table.sample.TableFreeze.Controller" height="100%">
+	<m:Page showHeader="false" enableScrolling="false" class="sapUiContentPadding">
+		<m:content>
+			<Table id = "table1" rows="{/ProductCollection}" selectionMode="Single" visibleRowCount="7" ariaLabelledBy="title" title="Product List" enableCellFilter="{ui>/cellFilterOn}" >
+				<toolbar>
+					<m:Toolbar height="1.8rem">
+						<m:content>
+							<m:SearchField placeholder="Filter" value="{ui>/globalFilter}" search="filterGlobally" width="15rem"></m:SearchField>
+							<m:ToolbarSpacer/>
+								<m:Button
+							icon="sap-icon://clear-filter"
+							tooltip="Clear all filters"
+							press="clearAllFilters"/>
+							<m:Input id="inputColumn" width="10rem" placeholder="fixed column count" tooltip="fixed column count"/>
+							<m:Input id="inputRow" width="10rem" placeholder="fixed row count" tooltip="fixed row count"/>
+							<m:Button id="button"  press="buttonPress" icon="sap-icon://table-column" tooltip="freeze columns"/>
+							<m:Button id="addbutton"  press="addButtonPress" icon="sap-icon://add-activity" tooltip="add columns"/>
+						</m:content>
+					</m:Toolbar>
+				</toolbar>
+				<columns>
+					<Column width="19rem"
+					filterProperty="Name"
+					filtered="true"
+					>
+						<m:Text text="Product Description" />
+						<template>
+							<m:Text text="{Name}" wrapping="false"/>
+						</template>
+					</Column>
+					<Column width="6rem">
+						<m:Label text="Product Id" wrapping = "true" />
+						<template>
+							<m:Text text="{ProductId}"/>
+						</template>
+					</Column>
+					<Column width="7rem">
+						<m:Label text="Brand"/>
+						<template>
+							<m:Text text="{Brand}" wrapping="false"/>
+						</template>
+					</Column>
+					<Column width="8rem">
+						<m:Label text="Molecule"/>
+						<template>
+							<m:ObjectStatus text="{Molecule}"/>
+						</template>
+					</Column>
+					<Column width="5rem">
+						<m:Label text="Sales Pack Size" wrapping = "true" />
+						<template>
+							<m:Text text="{SalesPackSize}"/>
+						</template>
+					</Column>
+					<Column width="7rem"
+					filterProperty="DosageForm">
+						<m:Label text="Dosage Form" wrapping = "true" />
+						<template>
+							<m:Text text="{DosageForm}"/>
+						</template>
+					</Column>
+					<Column width="9rem">
+						<m:Label text="Details"/>
+						<template>
+							<m:Button text="Show Details" press="handleDetailsPress"/>
+						</template>
+					</Column>
+					<Column width="5rem">
+						<m:Label text="Heavy Weight" wrapping = "true" />
+						<template>
+							<m:CheckBox selected="{ path: 'Heavy', type: 'sap.ui.model.type.String' }"/>
+						</template>
+					</Column>
+					<Column width="7rem"
+					filterProperty="Category">
+						<m:Label text="Category"/>
+						<template>
+							<m:Text text="{Category}"/>
+							
+						
+						</template>
+					</Column>
+					<!--		<Column width="6rem" hAlign="Center">
+						<m:Label text="Status"/>
+						<template>
+							<c:Icon src="{         path: 'Available',         formatter: '.formatAvailableToIcon'        }"/>
+						</template>
+					</Column>-->
+					<Column width="5rem" id="multiheader" sortProperty="avgthree" footer="TEst">
+						<multiLabels>
+							<m:Label text="December 2017" textAlign="Center" width="100%"/>
+							<m:Label text="3 Month Average Sale" textAlign="Center" width="100%" tooltip="3 Month Average Sale" wrapping = "true"/>
+						</multiLabels>
+						<template>
+							<m:Input id="inp1" value="{AvgThree}"/>
+						</template>
+					</Column>
+					<Column width="5rem" sortProperty="avgsix">
+						<multiLabels>
+							<m:Label text="December 2017" textAlign="Center" width="100%"/>
+							<m:Label text="6 Month Average Sale" textAlign="Center" width="100%" tooltip="6 Month Average Sale" wrapping = "true"/>
+						</multiLabels>
+						<template>
+							<m:Input value="{AvgSix}"/>
+						</template>
+					</Column>
+					<Column width="5rem">
+						<multiLabels>
+							<m:Label text="December 2017" textAlign="Center" width="100%"/>
+							<m:Label text="Baseline Forecast" textAlign="Center" width="100%" tooltip="Baseline Forecast" wrapping = "true"/>
+						</multiLabels>
+						<template>
+							<m:Input value="{BaselineFore}"/>
+						</template>
+					</Column>
+					<Column width="5rem">
+						<multiLabels>
+							<m:Label text="December 2017" textAlign="Center" width="100%"/>
+							<m:Label text="Bottom Up Forecast" textAlign="Center" width="100%" tooltip="Bottom Up Forecast" wrapping = "true"/>
+						</multiLabels>
+						<template>
+							<m:Input value="{BottomUpFore}"/>
+						</template>
+					</Column>
+					<Column width="5rem">
+						<multiLabels>
+							<m:Label text="December 2017" textAlign="Center" width="100%"/>
+							<m:Label text="Last Consensus Forecast" textAlign="Center" width="100%" tooltip="Last Consensus Forecast" wrapping = "true"/>
+						</multiLabels>
+						<template>
+							<m:Input value="{ConsensusFore}"/>
+						</template>
+					</Column>
+				
+					<Column width="5rem" id="multiheader1" >
+						<multiLabels>
+							<m:Label text="January 2018" textAlign="Center" width="100%"/>
+							<m:Label text="Baseline Forecast" textAlign="Center" width="100%" tooltip="Baseline Forecast" wrapping = "true"/>
+						</multiLabels>
+						<template>
+							<m:Input value="{BaselineFore}"/>
+						</template>
+					</Column>
+				<Column width="5rem">
+							<multiLabels>
+						<m:Label text="January 2018" textAlign="Center" width="100%"/>	
+							<m:Label text="Bottom Up Forecast" textAlign="Center" width="100%" tooltip="Bottom Up Forecast" wrapping = "true"/>
+						</multiLabels>
+					
+						<template>
+							<m:Input value="{BottomUpFore}"/>
+						</template>
+					</Column>
+					<Column width="5rem">
+							<multiLabels>
+						<m:Label text="January 2018" textAlign="Center" width="100%"/>	
+						<m:Label text="Last Consensus Forecast" textAlign="Center" width="100%" tooltip="Last Consensus Forecast" wrapping = "true" />
+						</multiLabels>
+					
+						<template>
+							<m:Input value="{ConsensusFore}"/>
+						</template>
+	</Column>
+	
+	<Column width="5rem" id="multiheader2" >
+						<multiLabels>
+							<m:Label text="February 2018" textAlign="Center" width="100%"/>
+							<m:Label text="Baseline Forecast" textAlign="Center" width="100%" tooltip="Baseline Forecast" wrapping = "true"/>
+						</multiLabels>
+						<template>
+							<m:Input value="{BaselineFore}"/>
+						</template>
+					</Column>
+				<Column width="5rem">
+							<multiLabels>
+						<m:Label text="February 2018" textAlign="Center" width="100%"/>	
+							<m:Label text="Bottom Up Forecast" textAlign="Center" width="100%" tooltip="Bottom Up Forecast" wrapping = "true"/>
+						</multiLabels>
+					
+						<template>
+							<m:Input value="{BottomUpFore}"/>
+						</template>
+					</Column>
+					<Column width="5rem">
+							<multiLabels>
+						<m:Label text="February 2018" textAlign="Center" width="100%"/>	
+						<m:Label text="Last Consensus Forecast" textAlign="Center" width="100%" tooltip="Last Consensus Forecast" wrapping = "true" />
+						</multiLabels>
+					
+						<template>
+							<m:Input value="{ConsensusFore}"/>
+						</template>
+	</Column>
+	
+	
+				</columns>
+			</Table>
+		</m:content>
+	</m:Page>
+</mvc:View>
