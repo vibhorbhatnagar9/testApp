@@ -137,10 +137,9 @@ sap.ui.define([
 
 		addButtonPress : function (oEvent) {
 			var oView = this.getView(),
-				oTable = oView.byId("table1"),
+				oTable = oView.byId("table1");
 				
-				iTotalRowCount = oTable.getRows().length;
-				
+			
 			
 				var Total = 0 ;
 			 var val = 0;
